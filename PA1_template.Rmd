@@ -24,9 +24,9 @@ setwd("~/Dropbox/R/Reproducible Research/RepData_PeerAssessment1")
 ## Loading and preprocessing the data
 
 ```{r}
+unzip(zipfile="activity.zip")
 activity_data<-read.csv("activity.csv")
 activity_data$date <- ymd(activity_data$date)
-
 ```
 
 
@@ -70,7 +70,9 @@ avg_steps <- activity_data %>%
   group_by(interval) %>%
   summarise(avg_steps = mean(steps))
 
-ggplot(avg_steps, aes(x = interval, y = avg_steps)) + geom_line()
+ggplot(avg_steps, aes(x = interval, y = avg_steps)) + geom_line() + 
+  xlab("5-minute interval") +
+  ylab("average number of steps taken")
 
 ```
 
@@ -90,7 +92,8 @@ NA_Values <- activity_data %>%
   filter(is.na(activity_data$steps)) %>%
   summarise(count = n())
 
-NA_Values
+#Printing missing values
+NA_Values 
 ```
 
 #### 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.

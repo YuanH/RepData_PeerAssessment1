@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Initial Setup
@@ -11,8 +6,36 @@ output:
 
 ```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(tidyr)
 library(magrittr)
+```
+
+```
+## 
+## Attaching package: 'magrittr'
+## 
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+```
+
+```r
 library(lubridate)
 library(ggplot2)
 #library(knitr)
@@ -25,6 +48,7 @@ setwd("~/Dropbox/R/Reproducible Research/RepData_PeerAssessment1")
 
 
 ```r
+unzip(zipfile="activity.zip")
 activity_data<-read.csv("activity.csv")
 activity_data$date <- ymd(activity_data$date)
 ```
@@ -46,7 +70,7 @@ total_steps <- activity_data %>%
 ggplot(total_steps, aes(x = steps)) + geom_histogram()
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 
 #### 2.Calculate and report the mean and median total number of steps taken per day
@@ -83,10 +107,12 @@ avg_steps <- activity_data %>%
   group_by(interval) %>%
   summarise(avg_steps = mean(steps))
 
-ggplot(avg_steps, aes(x = interval, y = avg_steps)) + geom_line()
+ggplot(avg_steps, aes(x = interval, y = avg_steps)) + geom_line() + 
+  xlab("5-minute interval") +
+  ylab("average number of steps taken")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -112,7 +138,8 @@ NA_Values <- activity_data %>%
   filter(is.na(activity_data$steps)) %>%
   summarise(count = n())
 
-NA_Values
+#Printing missing values
+NA_Values 
 ```
 
 ```
@@ -150,7 +177,7 @@ total_steps_new <- activity_data_new %>%
 ggplot(total_steps_new, aes(x = steps)) + geom_histogram()
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
 
 Calculating the mean of the total steps taken per day
 
@@ -206,6 +233,6 @@ ggplot(wksteps,aes(x = interval, y = steps)) + geom_line() + facet_grid(wkday~.)
   xlab("5-minute interval") + ylab("Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
 
 
