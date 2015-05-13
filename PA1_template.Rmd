@@ -14,6 +14,9 @@ library(tidyr)
 library(magrittr)
 library(lubridate)
 library(ggplot2)
+#library(knitr)
+#knit2html("PA1_template.Rmd")
+#browseURL("PA1_template.html")
 setwd("~/Dropbox/R/Reproducible Research/RepData_PeerAssessment1")
 
 ```

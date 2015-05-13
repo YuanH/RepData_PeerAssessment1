@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Initial Setup
@@ -6,38 +11,13 @@
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(tidyr)
 library(magrittr)
-```
-
-```
-## 
-## Attaching package: 'magrittr'
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-```
-
-```r
 library(lubridate)
 library(ggplot2)
+#library(knitr)
+#knit2html("PA1_template.Rmd")
+#browseURL("PA1_template.html")
 setwd("~/Dropbox/R/Reproducible Research/RepData_PeerAssessment1")
 ```
 
@@ -66,7 +46,7 @@ total_steps <- activity_data %>%
 ggplot(total_steps, aes(x = steps)) + geom_histogram()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 
 #### 2.Calculate and report the mean and median total number of steps taken per day
@@ -106,7 +86,7 @@ avg_steps <- activity_data %>%
 ggplot(avg_steps, aes(x = interval, y = avg_steps)) + geom_line()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -170,7 +150,7 @@ total_steps_new <- activity_data_new %>%
 ggplot(total_steps_new, aes(x = steps)) + geom_histogram()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 Calculating the mean of the total steps taken per day
 
@@ -226,6 +206,6 @@ ggplot(wksteps,aes(x = interval, y = steps)) + geom_line() + facet_grid(wkday~.)
   xlab("5-minute interval") + ylab("Number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 
